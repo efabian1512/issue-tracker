@@ -3,7 +3,7 @@ import React from 'react'
 const LoadingNewIssuePage = () => {
   return (
     <div>
-      Loading...
+        Loading...
     </div>
   )
 }
