@@ -3,6 +3,6 @@ import IssuesPage from './issues/page'
 
 export default function Home() {
   return (
-    <IssuesPage/>
+    <div>Hello World.</div>
   )
 }
