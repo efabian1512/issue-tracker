@@ -17,3 +17,8 @@
 body {
   color: rgb(var(--foreground-rgb));
 }
+
+
+Button {
+  cursor: pointer !important;
+}
