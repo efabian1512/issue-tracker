@@ -1,42 +1,43 @@
-import { Box, Flex, Grid } from '@radix-ui/themes';
-import { notFound } from 'next/navigation';
-import prisma from '@/prisma/client';
-import EditIssueButton from './EditssueButton';
-import IssueDetails from './IssueDetails';
-import DeleteIssueButton from './DeleteIssueButton';
-import { getServerSession } from 'next-auth';
-import authOptions from '@/app/auth/authOptions';
-import AssigneeSelect from './AssigneeSelect';
+import { Box, Flex, Grid } from "@radix-ui/themes";
+import { notFound } from "next/navigation";
+import prisma from "@/prisma/client";
+import EditIssueButton from "./EditssueButton";
+import IssueDetails from "./IssueDetails";
+import DeleteIssueButton from "./DeleteIssueButton";
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
+import AssigneeSelect from "./AssigneeSelect";
 
 interface Props {
-    params: {id: string}
+  params: { id: string };
 }
 const IssueDetaiPage = async ({ params }: Props) => {
-    const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-    if (typeof parseInt(params.id) !== 'number') notFound();
+  if (typeof parseInt(params.id) !== "number") notFound();
 
-    const issue = await prisma.issue.findUnique({
-        where: {id: parseInt(params.id)}
-    });
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) },
+  });
 
-    if(!issue)
-        notFound();
+  if (!issue) notFound();
 
-    return (
-    <Grid columns={{initial: "1", sm: "5"}} gap="5">
+  return (
+    <Grid columns={{ initial: "1", sm: "5" }} gap="5">
       <Box className="md:col-span-4">
-        <IssueDetails issue={issue}/>
+        <IssueDetails issue={issue} />
       </Box>
-      {session && <Box>
+      {session && (
+        <Box>
           <Flex direction="column" gap="4">
-            <AssigneeSelect />
-            <EditIssueButton issueId={issue.id}/>
+            <AssigneeSelect issue={issue} />
+            <EditIssueButton issueId={issue.id} />
             <DeleteIssueButton issueId={issue.id} />
           </Flex>
-      </Box>}
+        </Box>
+      )}
     </Grid>
-  )
-}
+  );
+};
 
 export default IssueDetaiPage;
