@@ -40,7 +40,7 @@ const NavLinks = () => {
     <ul className="flex space-x-6">
             {links.map((link, index) => <li key={index}><Link className={ classnames({
                 'nav-link !text-white': true,
-                '!text-zinc-900 font-bold': link.href === currentPath,
+                'text-zinc-900 font-bold': link.href === currentPath,
                 })} href={link.href}>{link.label}</Link></li>)}
         </ul>
   )
@@ -52,7 +52,7 @@ const AuthStatus = () => {
 
     if (status === "loading") return <Skeleton width="3rem"/>;
 
-    if (status === "unauthenticated") return  <Link className="nav-link" href="/api/auth/signin">Login</Link>;
+    if (status === "unauthenticated") return  <Link className="!text-white hover:font-medium" href="/api/auth/signin">Login</Link>;
 
   return <Box>
           <DropdownMenu.Root>
