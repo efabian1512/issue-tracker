@@ -20,11 +20,14 @@ const LatestIssues = async () => {
       <Table.Root>
         <Table.Body>
           {issues.map((issue) => (
+           
             <Table.Row key={issue.id}>
+               
               <Table.Cell>
+                 <Link  href={`/issues/${issue.id}`}>
                 <Flex justify="between">
                   <Flex direction="column" align="start" gap="2">
-                    <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+                   {issue.title}
                     <IssueStatusBadge status={issue.status} />
                   </Flex>
                   {issue.assignedToUser && (
@@ -35,7 +38,9 @@ const LatestIssues = async () => {
                       radius="full"
                     />
                   )}
+                 
                 </Flex>
+                </Link>
               </Table.Cell>
             </Table.Row>
           ))}
