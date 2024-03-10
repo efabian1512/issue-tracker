@@ -44,7 +44,7 @@ const DeleteIssueButton = ({issueId}: {issueId: number}) => {
         </AlertDialog.Description>
         <Flex mt="4" gap="3">
           <AlertDialog.Cancel>
-            <button style={{fontSize: '14px', color: 'gray', background: 'var(--accent-a3)'}} type="button" className="font-medium hover:bg-gray-700 rounded  px-3" >Cancel</button>
+            <button style={{fontSize: '14px', color: 'rgb(92 92 91)', background: 'var(--accent-a3)'}} type="button" className="font-medium rounded  px-3" >Cancel</button>
             {/* <Button type="reset" variant="soft" color="gray">Cancel</Button> */}
           </AlertDialog.Cancel>
           <AlertDialog.Action>
