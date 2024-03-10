@@ -28,10 +28,12 @@ const DeleteIssueButton = ({issueId}: {issueId: number}) => {
     <>
     <AlertDialog.Root>
       <AlertDialog.Trigger>
-        <Button type="reset" color="red" disabled={isDeleting}>
+        
+        <button style={{fontSize: '14px'}} type="button" className="text-white font-medium bg-red-500 hover:bg-red-600 rounded py-1" disabled={isDeleting}>Delete Issue {isDeleting && <Spinner/>}</button>
+        {/* <Button type="reset" color="red" disabled={isDeleting}>
           Delete Issue
           {isDeleting && <Spinner/>}
-          </Button>
+          </Button> */}
       </AlertDialog.Trigger>
       <AlertDialog.Content>
         <AlertDialog.Title>
@@ -42,10 +44,12 @@ const DeleteIssueButton = ({issueId}: {issueId: number}) => {
         </AlertDialog.Description>
         <Flex mt="4" gap="3">
           <AlertDialog.Cancel>
-            <Button type="reset" variant="soft" color="gray">Cancel</Button>
+            <button style={{fontSize: '14px', color: 'gray', background: 'var(--accent-a3)'}} type="button" className="font-medium hover:bg-gray-700 rounded  px-3" >Cancel</button>
+            {/* <Button type="reset" variant="soft" color="gray">Cancel</Button> */}
           </AlertDialog.Cancel>
           <AlertDialog.Action>
-            <Button type="reset" color="red" onClick={deleteIssue}>Delete Issue</Button>
+            <button style={{fontSize: '14px'}} type="button" className="text-white font-medium bg-red-500 hover:bg-red-600 rounded p-2">Delete Issue</button>
+            {/* <Button type="reset" color="red" onClick={deleteIssue}>Delete Issue</Button> */}
           </AlertDialog.Action>
         </Flex>
       </AlertDialog.Content>
