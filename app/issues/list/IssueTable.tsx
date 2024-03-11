@@ -24,7 +24,7 @@ const IssueTable = ({ issues }: Props) => {
 
    const searchParams = useSearchParams();
    
-  const onSort = (columnValue: string) => {
+  const onSort = (columnValue: Issue) => {
     let sortOrder = 'asc';
 
     if(columnValue === searchParams.get('orderBy')) {

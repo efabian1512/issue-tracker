@@ -34,7 +34,7 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
           <Select.Group>
             <Select.Label>Suggestions</Select.Label>
             <Select.Item value="unassigned">Unassigned</Select.Item>
-            {users?.map((user) => (
+            {users?.map((user: User) => (
               <Select.Item key={user.id} value={user.id}>
                 {user.name}
               </Select.Item>
@@ -50,7 +50,7 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
 const useUsers = () =>
   useQuery<User[]>({
     queryKey: ["users"],
-    queryFn: () => axios.get("/api/users").then((resp) => resp.data),
+    queryFn: () => axios.get<User>("/api/users").then(resp => resp.data),
     staleTime: 60 * 1000,
     retry: 3,
   });

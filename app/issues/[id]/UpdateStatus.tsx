@@ -1,12 +1,10 @@
 'use client';
-import { Select, Text } from '@radix-ui/themes'
-import React from 'react'
-import { notFound } from 'next/navigation';
+import { useRouter } from '@/node_modules/next/navigation';
 import { Issue, Status } from '@prisma/client';
-import { Skeleton } from '@/app/components';
+import { Select } from '@radix-ui/themes';
 import axios from 'axios';
-import toast, { Toaster } from "react-hot-toast";
-import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import toast from "react-hot-toast";
 
 const UpdateStatus = async ({issue}: {issue: Issue}) => {
 
@@ -16,12 +14,13 @@ const UpdateStatus = async ({issue}: {issue: Issue}) => {
   { label: "Closed", value: "CLOSED" },
 ];
 
+const router = useRouter();
  
 const onStatusUpdate = (status: string) => {
     axios
       .patch("/api/issues/" + issue.id, {
         status
-      })
+      }).then(() => router.refresh())
       .catch(() => {
         toast.error("Status could not be updated.");
       });
