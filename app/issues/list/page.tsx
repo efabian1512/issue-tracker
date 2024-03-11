@@ -1,10 +1,11 @@
-import prisma from "@/prisma/client";
-import { Box, Flex } from "@radix-ui/themes";
 import Pagination from "@/app/components/Pagination";
+import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
-import IssueActions from "./IssueActions";
-import IssueTable, { IssueQuery, columnNames } from "./IssueTable";
+import { Flex } from "@radix-ui/themes";
 import { Metadata } from "next";
+import IssueActions from "./IssueActions";
+import IssueTable, { IssueQuery } from "./IssueTable";
+import { columnNames } from "./IssueTableColumns";
 
 interface Props {
   searchParams: IssueQuery;
@@ -16,8 +17,12 @@ const IssuesPage = async ({ searchParams }: Props) => {
     : undefined;
   const where = { status };
 
+  const sortOrders = ['asc', 'desc'];
+  const sortOrder = sortOrders.includes(searchParams.sortOrder) ? searchParams.sortOrder :
+  undefined;
+
   const orderBy = columnNames.includes(searchParams.orderBy)
-    ? { [searchParams.orderBy]: "asc" }
+    ? { [searchParams.orderBy]: sortOrder }
     : undefined;
 
   const page = parseInt(searchParams.page) || 1;
@@ -34,7 +39,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
   return (
     <Flex direction="column" gap="3">
       <IssueActions />
-      <IssueTable searchParams={searchParams} issues={issues} />
+      <IssueTable issues={issues} />
 
       <Pagination
         pageSize={pageSize}
