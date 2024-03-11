@@ -50,7 +50,7 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
 const useUsers = () =>
   useQuery<User[]>({
     queryKey: ["users"],
-    queryFn: () => axios.get<User>("/api/users").then(resp => resp.data),
+    queryFn: () => axios.get("/api/users").then(resp => resp.data),
     staleTime: 60 * 1000,
     retry: 3,
   });
